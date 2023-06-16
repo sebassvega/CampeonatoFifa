@@ -2,8 +2,7 @@ body {
   background: linear-gradient(23deg, #74c7ff28, #4356b315);
   background-size: cover;
   background-repeat: no-repeat;
-  height: 100vh; /* Establece la altura completa de la ventana */
-
+  height: 100vh; 
   justify-content: center;
   align-items: center;
   font-family: "Roboto", Arial, sans-serif;
@@ -55,7 +54,7 @@ tbody tr:nth-child(even) {
 }
 
 h1 {
-  font-family: "Open Sans", Arial, sans-serif; /* Ejemplo de una tipografía moderna */
+  font-family: "Open Sans", Arial, sans-serif;
   font-size: 42px;
   font-weight: 700;
   color: #333333;
@@ -76,7 +75,6 @@ h1::after {
   background-color: #333333;
 }
 
-/* Estilo para las dos primeras filas de la tabla */
 table tr:nth-child(-n + 2) {
   background-color: rgba(139, 133, 131, 0.13);
 }
@@ -117,7 +115,6 @@ button:active {
   transform: translateY(1px);
 }
 
-/* Estilos para pantallas de teléfonos celulares */
 @media (max-width: 767px) {
   .container {
     padding: 10px;
