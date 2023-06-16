@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tablas de Grupos</title>
+    <link rel="stylesheet" type="text/css" href="estilos.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <h1>UEFA PERCOLEAGUE</h1>
+
+    <table id="tablaA">
+      <caption>
+        Grupo A
+      </caption>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Equipo</th>
+          <th class="sortable" data-column="puntos">Puntos</th>
+          <th class="GF">Goles a favor</th>
+          <th class="GC">Goles en contra</th>
+          <th class="DG">Diferencia de goles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Roman</td>
+          <td>PSG</td>
+          <td class="puntos">0</td>
+          <td class="GF_td">0</td>
+          <td>0</td>
+          <td class="DG_td">0</td>
+        </tr>
+        <tr>
+          <td>Nacho</td>
+          <td>Madrid</td>
+          <td class="puntos">0</td>
+          <td class="GF_td">0</td>
+          <td>0</td>
+          <td class="DG_td">0</td>
+        </tr>
+        <tr>
+          <td>Hungaro</td>
+          <td>City</td>
+          <td class="puntos">0</td>
+          <td class="GF_td">0</td>
+          <td>0</td>
+          <td class="DG_td">0</td>
+        </tr>
+        <tr>
+          <td>Nico</td>
+          <td>Liverpool</td>
+          <td class="puntos">0</td>
+          <td class="GF_td">0</td>
+          <td>0</td>
+          <td class="DG_td">0</td>
+        </tr>
+        <tr>
+          <td>Hernan</td>
+          <td>Dortmunt</td>
+          <td class="puntos">0</td>
+          <td class="GF_td">0</td>
+          <td>0</td>
+          <td class="DG_td">0</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="container">
+      <button onclick="ordenarTablas()">Ordenar</button>
+    </div>
+
+    <table id="tablaB">
+      <caption>
+        Grupo B
+      </caption>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Equipo</th>
+          <th class="sortable" data-column="puntos">Puntos</th>
+          <th class="GF">Goles a favor</th>
+          <th class="GC">Goles en contra</th>
+          <th class="DG">Diferencia de goles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Vega</td>
+          <td>Milan</td>
+          <td class="puntos">0</td>
+          <td class="GF_td">0</td>
+          <td>0</td>
+          <td class="DG_td">0</td>
+        </tr>
+        <tr>
+          <td>Juanchi</td>
+          <td>Chelsea</td>
+          <td class="puntos">0</td>
+          <td class="GF_td">0</td>
+          <td>0</td>
+          <td class="DG_td">0</td>
+        </tr>
+        <tr>
+          <td>Faq</td>
+          <td>Bayern</td>
+          <td class="puntos">0</td>
+          <td class="GF_td">0</td>
+          <td>0</td>
+          <td class="DG_td">0</td>
+        </tr>
+        <tr>
+          <td>Agus</td>
+          <td>United</td>
+          <td class="puntos">0</td>
+          <td class="GF_td">0</td>
+          <td>0</td>
+          <td class="DG_td">0</td>
+        </tr>
+        <tr>
+          <td>Peque</td>
+          <td>Atletico</td>
+          <td class="puntos">0</td>
+          <td class="GF_td">0</td>
+          <td>0</td>
+          <td class="DG_td">0</td>
+        </tr>
+        <tr>
+          <td>Santi</td>
+          <td>Barca</td>
+          <td class="puntos">0</td>
+          <td class="GF_td">0</td>
+          <td>0</td>
+          <td class="DG_td">0</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Script de cambiar valores -->
+    <script>
+      // Obtener referencia a todas las celdas td
+      var tdCells = document.getElementsByTagName("td");
+
+      // Recorrer todas las celdas td y agregar un evento click a cada una
+      for (var i = 0; i < tdCells.length; i++) {
+        tdCells[i].addEventListener("click", function () {
+          // Guardar el valor actual de la celda
+          var valorActual = this.textContent;
+
+          // Crear un campo de entrada para ingresar el nuevo valor
+          var input = document.createElement("input");
+          input.type = "number";
+          input.value = valorActual;
+
+          // Reemplazar el contenido de la celda con el campo de entrada
+          this.innerHTML = "";
+          this.appendChild(input);
+
+          // Establecer el foco en el campo de entrada
+          input.focus();
+
+          // Actualizar el valor de la celda cuando se presiona la tecla Enter
+          input.addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+              var nuevoValor = input.value.trim();
+
+              // Validar si se ingresó un nuevo valor
+              if (nuevoValor !== "") {
+                // Actualizar el contenido de la celda con el nuevo valor
+                this.parentNode.textContent = nuevoValor;
+              } else {
+                // Restaurar el valor anterior si no se ingresó un nuevo valor
+                this.parentNode.textContent = valorActual;
+              }
+            }
+          });
+
+          // Restaurar el valor anterior y eliminar el campo de entrada cuando se pierde el foco
+          input.addEventListener("blur", function () {
+            this.parentNode.textContent = valorActual;
+          });
+        });
+      }
+    </script>
+
+    <!-- Script de ordenar tabla-->
+    <script>
+      function ordenarTablas() {
+        ordenarTabla("tablaA");
+        ordenarTabla("tablaB");
+      }
+      function ordenarTabla(tablaId) {
+        var table = document.getElementById(tablaId); // Obtener referencia a la tabla
+        var tbody = table.getElementsByTagName("tbody")[0]; // Obtener referencia al cuerpo de la tabla
+        var rows = Array.from(tbody.getElementsByTagName("tr")); // Obtener todas las filas del cuerpo de la tabla
+
+        var sortedRows = rows.sort(function (a, b) {
+          var puntosAElement = a.querySelector("td.puntos");
+          var puntosBElement = b.querySelector("td.puntos");
+
+          var puntosA = puntosAElement
+            ? parseInt(puntosAElement.textContent)
+            : 0;
+          var puntosB = puntosBElement
+            ? parseInt(puntosBElement.textContent)
+            : 0;
+
+          // Ordenar por puntos en orden descendente
+          if (puntosA > puntosB) {
+            return -1;
+          } else if (puntosA < puntosB) {
+            return 1;
+          } else {
+            var diferenciaGolesAElement = a.querySelector("td.DG_td");
+            var diferenciaGolesBElement = b.querySelector("td.DG_td");
+
+            var diferenciaGolesA = diferenciaGolesAElement
+              ? parseInt(diferenciaGolesAElement.textContent)
+              : 0;
+            var diferenciaGolesB = diferenciaGolesBElement
+              ? parseInt(diferenciaGolesBElement.textContent)
+              : 0;
+
+            // En caso de empate en puntos, ordenar por diferencia de goles en orden descendente
+            if (diferenciaGolesA > diferenciaGolesB) {
+              return -1;
+            } else if (diferenciaGolesA < diferenciaGolesB) {
+              return 1;
+            } else {
+              var golesAfavorAElement = a.querySelector("td.GF_td");
+              var golesAfavorBElement = b.querySelector("td.GF_td");
+
+              var golesAfavorA = golesAfavorAElement
+                ? parseInt(golesAfavorAElement.textContent)
+                : 0;
+              var golesAfavorB = golesAfavorBElement
+                ? parseInt(golesAfavorBElement.textContent)
+                : 0;
+
+              // En caso de empate en puntos y diferencia de goles, ordenar por goles a favor en orden descendente
+              if (golesAfavorA > golesAfavorB) {
+                return -1;
+              } else if (golesAfavorA < golesAfavorB) {
+                return 1;
+              } else {
+                // Si aún hay empate, mantener el orden original
+                return rows.indexOf(a) - rows.indexOf(b);
+              }
+            }
+          }
+        });
+
+        // Vaciar el cuerpo de la tabla
+        while (tbody.firstChild) {
+          tbody.removeChild(tbody.firstChild);
+        }
+
+        // Agregar las filas ordenadas al cuerpo de la tabla
+        sortedRows.forEach(function (row) {
+          tbody.appendChild(row);
+        });
+      }
+    </script>
+
+    <!-- Script de cambiar titulos en celu -->
+    <script>
+      window.addEventListener("resize", function () {
+        // Verificar el tamaño de la pantalla cuando se redimensione
+        if (window.innerWidth <= 768) {
+          var golesAFavor = document.getElementsByClassName("GF");
+          for (var i = 0; i < golesAFavor.length; i++) {
+            golesAFavor[i].innerHTML = "GF";
+          }
+
+          var golesEnContra = document.getElementsByClassName("GC");
+          for (var i = 0; i < golesEnContra.length; i++) {
+            golesEnContra[i].innerHTML = "GC";
+          }
+
+          var diferenciaGoles = document.getElementsByClassName("DG");
+          for (var i = 0; i < diferenciaGoles.length; i++) {
+            diferenciaGoles[i].innerHTML = "DG";
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
